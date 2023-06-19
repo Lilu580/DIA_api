@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const uri = 'mongodb+srv://bogdanmaliutawork:123@cluster0.wzgiw91.mongodb.net/?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://bogdanmaliutawork:qwerty123@cluster0.wzgiw91.mongodb.net/?retryWrites=true&w=majority';
 const dbName = 'Auth';
 
 
