@@ -17,10 +17,6 @@ export async function connectToMongoDB() {
   console.log('Connected successfully to MongoDB');
 }
 
-export function getClient() {
-  return client;
-}
-
 export function getDB() {
   return client.db(dbName);
 }
