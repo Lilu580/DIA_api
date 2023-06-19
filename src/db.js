@@ -13,8 +13,14 @@ const client = new MongoClient(uri, {
 });
 
 export async function connectToMongoDB() {
-  await client.connect();
-  console.log('Connected successfully to MongoDB');
+  try {
+    await client.connect();
+    console.log('Connected successfully to MongoDB');
+  } catch (error) {
+    console.log(error);
+  } finally {
+    client.close();
+  }
 }
 
 export function getDB() {
