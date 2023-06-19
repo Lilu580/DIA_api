@@ -21,20 +21,32 @@ const generateAccesToken = (id, email, login, name, phone) => {
 export const registration = async(req, res) => {
   try {
     const { email, phone, login, name, password } = req.body;
-    const existingUser = await collection.findOne({ email });
+  
+    const existingUserByEmail = await collection.findOne({ email });
+    const existingUserByPhone = await collection.findOne({ phone });
+    const existingUserByLogin = await collection.findOne({ login });
 
     if (!userSchema.parse(req.body)) {
       return res.status(400).send('Invalid data');
     }
 
-    if (existingUser) {
+    if (existingUserByEmail) {
       return res.status(400).send('User with this email already exists');
+    }
+
+    if (existingUserByPhone) {
+      return res.status(400).send('User with this phone already exists');
+    }
+
+    if (existingUserByLogin) {
+      return res.status(400).send('User with this login already exists');
     }
 
     const hashPassword = bcrypt.hashSync(password, 7);
 
 
     const newUser = { email, phone, login, name, password: hashPassword };
+    
     await collection.insertOne(newUser);
 
     res.status(200).send('Registration successful');
