@@ -1,12 +1,18 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const url = 'mongodb://localhost:27017/auth';
+const uri = 'mongodb+srv://bogdanmaliutawork:123@cluster0.wzgiw91.mongodb.net/?retryWrites=true&w=majority';
 const dbName = 'Auth';
 
-let client;
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
 export async function connectToMongoDB() {
-  client = new MongoClient(url);
   await client.connect();
   console.log('Connected successfully to MongoDB');
 }
