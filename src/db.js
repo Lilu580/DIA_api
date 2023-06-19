@@ -19,7 +19,7 @@ export async function connectToMongoDB() {
   } catch (error) {
     console.log(error);
   } finally {
-    client.close();
+    await client.close();
   }
 }
 
