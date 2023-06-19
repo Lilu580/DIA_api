@@ -18,11 +18,21 @@ export async function connectToMongoDB() {
     console.log('Connected successfully to MongoDB');
   } catch (error) {
     console.log(error);
-  } finally {
-    await client.close();
   }
+  
 }
 
 export function getDB() {
   return client.db(dbName);
 }
+
+export async function closeMongoDBConnection() {
+  try {
+    await client.close();
+    console.log('MongoDB connection closed');
+  } catch (error) {
+    console.error('Error closing MongoDB connection:', error);
+    throw error;
+  }
+}
+
