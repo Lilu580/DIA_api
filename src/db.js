@@ -1,7 +1,8 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import 'dotenv/config';
 
-const uri = 'mongodb+srv://bogdanmaliutawork:qwerty123@cluster0.wzgiw91.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'Auth';
+const uri = process.env.DB_CONNECTION_URL;
+const dbName = process.env.DB_NAME;
 
 
 const client = new MongoClient(uri, {
